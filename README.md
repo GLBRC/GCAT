@@ -15,8 +15,8 @@
 # Getting started -- WEI
 
 - GCAT has been updated (e.g. changes  to database.yml, Gemfile) to run in WEI's web hosting environment
-  - updated to run on Ruby 2.2.5
-  - uses MariaDB for storage (gem 'mysql2') instead of SQLite (gem 'sqlite3')
+  - still runs on Ruby 1.9.3 due to code incompatability with newer versions
+  - RAILS_ENV=[production,ci] uses MariaDB for storage (gem 'mysql2') instead of SQLite (gem 'sqlite3'), which is still used in RAILS_ENV=[development,test]
   - passes Gitlab CI tests
      - runs rpsec tests for GCAT (RAILS_ENV=test)
      - starts successfully in a production-like environment (RAILS_ENV=ci)
