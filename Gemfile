@@ -34,7 +34,6 @@ group :development, :test do
 end
 
 group :development, :test do
-  gem 'phantomjs'
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara', '2.4.0'
   gem 'poltergeist', '1.6.0'
