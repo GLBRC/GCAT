@@ -1,6 +1,11 @@
-[![build status](https://gitlab.wei.wisc.edu/bakyle/GCAT/badges/master/build.svg)](https://gitlab.wei.wisc.edu/bakyle/GCAT/commits/master)
+# GCAT -- Active Branches
 
-# What's in this package
+[![build status](https://gitlab.wei.wisc.edu/bakyle/GCAT/badges/master/build.svg)](https://gitlab.wei.wisc.edu/bakyle/GCAT/commits/master) -- master
+
+[![build status](https://gitlab.wei.wisc.edu/bakyle/GCAT/badges/ci-gcat-6.2/build.svg)](https://gitlab.wei.wisc.edu/bakyle/GCAT/commits/ci-gcat-6.2) -- ci-gcat-6.2
+
+
+# What's in this package?
 
 - `./` -- ruby code for the GCAT webapp
 - `./GCAT_info/R` -- R code 
