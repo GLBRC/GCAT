@@ -1,6 +1,23 @@
-.Rproj.user
-.Rhistory
+## .gitignore
+
+# OS junk
+.DS_Store
+[Tt]humbs.db
+
+# temp files
+.*.swp
+
+# R files
 .RData
-Rails/public/generatedFiles/
-Rails/public/uploadedFiles/
-Thumbs.db
+.Rhistory
+.Rproj.user
+
+# webapp data
+.bundle
+db/*.sqlite3
+public/generatedFiles/
+public/uploadedFiles/
+log/
+tmp/
+.sass-cache/
+

@@ -1,11 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rake', :group=>:test
 gem 'rails', '3.2.15'
-gem 'sqlite3'
+gem 'jquery-rails'
+gem 'rinruby'
+gem 'rubyzip'
+gem 'pry', :group=>:development
+gem 'rake', :group=>:test
 
-# Gems used only for assets and not required
-# in production environments by default.
+# Gems used only for assets and not required in production environments by default
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier'
@@ -13,23 +15,25 @@ group :assets do
   gem 'therubyracer', :platform => :ruby
 end
 
-gem 'jquery-rails'
-gem 'pry', :group=>:development
-
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
-
-gem 'rinruby'
-gem 'rubyzip'
 
 group :development do
   gem 'thin', '1.6.4'
   gem 'quiet_assets', '1.1.0'
 end
 
+group :production, :ci do
+  gem 'mysql2'
+end
+
 group :development, :test do
+  gem 'sqlite3'
+end
+
+group :development, :test, :ci do
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara', '2.4.0'
   gem 'poltergeist', '1.6.0'

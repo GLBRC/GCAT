@@ -1,0 +1,54 @@
+###
+#  GrowthCurveDB .gitlab-ci.yml
+#  - uses custom docker container 
+#    - https://gitlab.wei.wisc.edu/devops/weiror/tree/growthcurvedb
+###
+
+image: registry.glbrc.org/ci/gcat:latest
+
+services:
+  - mariadb:10.1
+
+stages:
+  - test
+
+variables:
+  # mariadb
+  MYSQL_DATABASE: webappdb
+  MYSQL_USER: dbuser
+  MYSQL_PASSWORD: dbuser_p@ssword
+  MYSQL_ROOT_PASSWORD: dbroot_p@ssword
+  # webapp
+  RAILS_ENV: production
+  MY_DATABASE: 'yes'
+  MY_SECRETS: 'yes'
+  MY_SETTINGS: 'yes'
+  APT_UPDATES: 'no'
+  DB_CONTAINER: mariadb
+  MARIADB_ENV_MYSQL_DATABASE: webappdb
+  MARIADB_ENV_MYSQL_USER: dbuser
+  MARIADB_ENV_MYSQL_PASSWORD: dbuser_p@ssword
+  MARIADB_ENV_MYSQL_ROOT_PASSWORD: dbroot_p@ssword
+
+before_script:
+  - cp -a $(pwd)/. /home/app/webapp
+  - /etc/my_init.d/11_chownapphome.sh
+  - /etc/my_init.d/12_custom_requirements.sh
+  - /etc/my_init.d/13_environment_config.sh
+  - /etc/my_init.d/15_customizations.sh
+  - /etc/my_init.d/19_misc.sh
+  - /etc/my_init.d/21_chownapphome.sh
+
+rails_env=test_with_rspec:
+  stage: test
+  script:
+    - su - app -lc 'cd /home/app/webapp && RAILS_ENV=test bundle install --with test --jobs $(nproc)'
+    # see GCAT_info/GCAT_Roadmap.txt for info on these rpsec tests
+    - su - app -lc 'cd /home/app/webapp && RAILS_ENV=test bundle exec rspec spec/features/'
+    - su - app -lc 'cd /home/app/webapp && RAILS_ENV=test bundle exec rspec spec/unit'
+    - su - app -lc 'cd /home/app/webapp && RAILS_ENV=test bundle exec rspec spec/integration'
+
+rails_env=ci:
+  stage: test
+  script:
+    - su - app -lc 'cd /home/app/webapp && RAILS_ENV=ci bundle install --with ci --jobs $(nproc)'

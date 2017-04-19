@@ -1,0 +1,36 @@
+## ENVIRONMENTS
+
+# inherited unless overriden
+default: &default
+  encoding: utf8
+  pool: 5
+  timeout: 5000
+
+# local dev worksation
+development:
+  <<: *default
+  adapter: sqlite3
+  database: db/development.sqlite3
+
+test:
+  <<: *default
+  adapter: sqlite3
+  database: db/test.sqlite3
+
+# gitlab ci
+ci:
+  <<: *default
+  adapter: mysql2
+  hostname: <%= ENV['DB_CONTAINER'] %>
+  port: 3306
+  database: <%= ENV['MARIADB_ENV_MYSQL_DATABASE'] %>
+  username: <%= ENV['MARIADB_ENV_MYSQL_USER'] %>
+  password: <%= ENV['MARIADB_ENV_MYSQL_PASSWORD'] %>
+
+# centos 7 vm
+production:
+  <<: *default
+  adapter: mysql2
+  socket: /var/lib/mysqld/mysqld.sock
+  database: gcat 
+  password: <%= ENV['MYSQL_RUBY_PASSWORD'] %>
