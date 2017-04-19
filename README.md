@@ -1,8 +1,8 @@
 # GCAT -- Active Branches
 
-[![build status](https://gitlab.wei.wisc.edu/bakyle/GCAT/badges/master/build.svg)](https://gitlab.wei.wisc.edu/bakyle/GCAT/commits/master) -- master
+[![build status](https://gitlab.wei.wisc.edu/compbio/GCAT/badges/master/build.svg)](https://gitlab.wei.wisc.edu/compbio/GCAT/commits/master) -- master
 
-[![build status](https://gitlab.wei.wisc.edu/bakyle/GCAT/badges/ci-gcat-6.2/build.svg)](https://gitlab.wei.wisc.edu/bakyle/GCAT/commits/ci-gcat-6.2) -- ci-gcat-6.2
+[![build status](https://gitlab.wei.wisc.edu/compbio/GCAT/badges/ci-gcat-6.2/build.svg)](https://gitlab.wei.wisc.edu/compbio/GCAT/commits/ci-gcat-6.2) -- ci-gcat-6.2
 
 
 # What's in this package?
