@@ -42,6 +42,7 @@ before_script:
 rails_env=test_with_rspec:
   stage: test
   script:
+    - apt-get install -y phantomjs
     - su - app -lc 'cd /home/app/webapp && RAILS_ENV=test bundle install --with test --jobs $(nproc)'
     # see GCAT_info/GCAT_Roadmap.txt for info on these rpsec tests
     - su - app -lc 'cd /home/app/webapp && RAILS_ENV=test bundle exec rspec spec/features/'
