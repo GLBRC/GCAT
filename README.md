@@ -2,7 +2,7 @@
 
 [![build status](https://gitlab.wei.wisc.edu/compbio/GCAT/badges/master/build.svg)](https://gitlab.wei.wisc.edu/compbio/GCAT/commits/master) -- master
 
-[![build status](https://gitlab.wei.wisc.edu/compbio/GCAT/badges/ci-gcat-6.2/build.svg)](https://gitlab.wei.wisc.edu/compbio/GCAT/commits/ci-gcat-6.2) -- ci-gcat-6.2
+[![build status](https://gitlab.wei.wisc.edu/compbio/GCAT/badges/GCAT_6.2/build.svg)](https://gitlab.wei.wisc.edu/compbio/GCAT/commits/GCAT_6.2) -- GCAT_6.2
 
 
 # What's in this package?
