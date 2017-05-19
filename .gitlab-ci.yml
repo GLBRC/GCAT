@@ -52,6 +52,8 @@ before_script:
   - /etc/my_init.d/19_misc.sh
   - /etc/my_init.d/21_chownapphome.sh
   ## GCAT prereqs
+  # - install Extremely Naive Charset Analyser 
+  #   - enca is used in rspec testing
   # - install R -- get key, install base from apt repo
   #   - get key, install base from apt-repo
   # - install GCAT R package
@@ -59,15 +61,24 @@ before_script:
   #     - this was done in a crappy copy-paste way from the CRAN website 
   #     - future: maybe there's a way to automate dependency install on the command line?
   #   - note: order of install is IMPORTANT here for R package install
+  # enca v1.19 
+  - cd $CI_HOME
+  - git clone https://github.com/nijel/enca.git prereqs/enca
+  - cd prereqs/enca
+  - ./configure
+  - make
+  - make check
+  - make install
   # R
+  - cd $CI_HOME
   - mkdir -p apt  
   - echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | tee -a /etc/apt/sources.list
   - gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9
   - gpg -a --export E084DAB9 | apt-key add -
   - apt-get -o dir::cache::archives="apt" install -y -qq r-base r-base-dev fontconfig wget 
   # R packages 
+  - cd $CI_HOME
   - echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site 
-  #- git clone https://github.com/ybukhman/GCAT.git /tmp/GCAT 
   - mkdir -p prereqs/R
   - cp -a GCAT_info/R/. prereqs/R
   - cd prereqs/R
@@ -104,9 +115,10 @@ before_script:
   - R CMD INSTALL gdata_2.17.0.tar.gz 
   - R CMD INSTALL gplots_3.0.1.tar.gz 
   - R CMD INSTALL GCAT_6.3.1.tar.gz
-  # phantomjs
+  # phantomjs 2.1.1
   # apt-get installs merged into single command above
   #- apt-get -o dir::cache::archives="apt" install -y -qq fontconfig wget 
+  - cd $CI_HOME
   - mkdir -p prereqs/phantomjs
   - if [ ! -f prereqs/phantomjs/bin/phantomjs ]; then wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2; tar -xjvf phantomjs-2.1.1-linux-x86_64.tar.bz2 --strip-components 1 -C prereqs/phantomjs/; fi
   - ln -s `pwd`/prereqs/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
