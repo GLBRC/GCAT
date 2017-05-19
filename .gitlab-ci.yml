@@ -118,8 +118,6 @@ before_script:
   - su - app -lc 'cd /home/app/webapp && bundle install --with test ci --without development production --jobs $(nproc) --path $CI_HOME/vendor'
   # dynamically generate $SECRET_KEY_BASE
   - su - app -lc 'cd /home/app/webapp && echo export SECRET_KEY_BASE=${SECRET_KEY_BASE:=`bundle exec rake secret`}' | tee -a /home/app/.profile /home/app/.bashrc
-  - sed -i -e "s/.*config.secret_key.*/config.secret_key = \'<%= ENV["SECRET_KEY_BASE"] %>\'/" /home/app/webapp/config/initializers/devise.rb
-
 
 rails_env=test_with_rspec:
   stage: test
