@@ -31,9 +31,6 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-end
-
-group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara', '2.4.0'
   gem 'poltergeist', '1.6.0'
