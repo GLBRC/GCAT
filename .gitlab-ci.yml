@@ -7,8 +7,8 @@
 
 image: registry.glbrc.org/ci/weiror:1.3
 
-services:
-  - mariadb:10.1
+#services:
+#  - mariadb:10.1
 
 stages:
   - test
@@ -127,8 +127,7 @@ rails_env=test_with_rspec:
     - su - app -lc 'cd /home/app/webapp && RAILS_ENV=test bundle exec rspec spec/unit'
     - su - app -lc 'cd /home/app/webapp && RAILS_ENV=test bundle exec rspec spec/integration'
 
-rails_env=ci:
-  stage: test
-  script:
+#rails_env=ci:
+#  stage: test
+#  script:
     # stub GCAT test command for rails_env=ci
-    - su - app -lc 'cd /home/app/webapp && RAILS_ENV=ci bundle exec rake assets:precompile db:migrate'
