@@ -38,7 +38,7 @@ RUN cd /tmp/ \
  && mkdir -p /etc/R/ \
  && echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site
 
-ADD GCAT_info/R/ /tmp/R
+ADD R/ /tmp/R
 
 RUN cd /tmp/R \
  && curl -O https://cran.r-project.org/src/contrib/pheatmap_1.0.8.tar.gz  \
