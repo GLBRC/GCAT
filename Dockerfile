@@ -9,6 +9,7 @@ FROM centos:7
 ### YUM / MISC
 
 RUN yum install -y \
+      epel-release \
       gcc \
       git \
  && yum clean all -y \
@@ -27,20 +28,18 @@ RUN cd /tmp/ \
 
 ### R
 
-RUN mkdir -p /tmp/apt && cd $_ \
- && echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | tee -a /etc/apt/sources.list \
- && gpg --keyserver keyserver.ubuntu.com --recv-key E084DAB9 \
- && gpg -a --export E084DAB9 | apt-key add - \
- && apt-get -o dir::cache::archives="apt" install -y -qq r-base r-base-dev fontconfig wget
+RUN yum install -y \
+      R \
+ && yum clean all -y \
+ && rm -rf /var/cache/yum
 
 RUN cd /tmp/ \
  && mkdir -p /etc/R/ \
  && echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site
 
-ADD GCAT_info/R/ /tmp/prereqs/R
-#cp -a GCAT_info/R/. prereqs/R
+ADD GCAT_info/R/ /tmp/R
 
-RUN cd /tmp/prereqs/R \
+RUN cd /tmp/R \
  && curl -O https://cran.r-project.org/src/contrib/pheatmap_1.0.8.tar.gz  \
  && curl -O https://cran.r-project.org/src/contrib/gplots_3.0.1.tar.gz  \
  && curl -O https://cran.r-project.org/src/contrib/gtable_0.2.0.tar.gz  \
@@ -73,5 +72,14 @@ RUN cd /tmp/prereqs/R \
  && R CMD INSTALL gtools_3.5.0.tar.gz  \
  && R CMD INSTALL gdata_2.17.0.tar.gz  \
  && R CMD INSTALL gplots_3.0.1.tar.gz  \
- && R CMD INSTALL GCAT_6.3.1.tar.gz 
+ && R CMD INSTALL GCAT_6.3.1.tar.gz \
+ && \rm -rf /tmp/R
+
+### phantomjs 2.1.1
+
+RUN curl -sSL https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | \
+      tar -xjv --strip-components 1 -C /tmp/phantomjs/ \
+ && mv /tmp/phantomjs/bin/phantomjs /usr/local/bin/phantomjs \
+ && \rm -rf /tmp/phantomjs/
+
 
