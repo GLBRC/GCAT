@@ -10,6 +10,7 @@ FROM centos:7
 
 RUN yum install -y \
       gcc \
+      git \
  && yum clean all -y \
  && rm -rf /var/cache/yum
 
