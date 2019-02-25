@@ -73,5 +73,5 @@ RUN cd /tmp/prereqs/R \
  && R CMD INSTALL gtools_3.5.0.tar.gz  \
  && R CMD INSTALL gdata_2.17.0.tar.gz  \
  && R CMD INSTALL gplots_3.0.1.tar.gz  \
- && R CMD INSTALL GCAT_6.3.1.tar.gz \
+ && R CMD INSTALL GCAT_6.3.1.tar.gz 
 
