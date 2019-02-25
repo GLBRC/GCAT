@@ -12,6 +12,7 @@ RUN yum install -y \
       epel-release \
       gcc \
       git \
+      make \
  && yum clean all -y \
  && rm -rf /var/cache/yum
 
