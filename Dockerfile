@@ -9,6 +9,7 @@ FROM centos:7
 ### YUM / MISC
 
 RUN yum install -y \
+      bzip2 \
       epel-release \
       gcc \
       git \
@@ -34,9 +35,9 @@ RUN yum install -y \
  && yum clean all -y \
  && rm -rf /var/cache/yum
 
-RUN cd /tmp/ \
- && mkdir -p /etc/R/ \
- && echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site
+#RUN cd /tmp/ \
+# && mkdir -p /etc/R/ \
+# && echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site
 
 RUN echo -e '#!/usr/bin/env bash \n\
 # https://blog.sellorm.com/2017/10/21/quick-script-to-install-an-r-package-from-the-command-line/ \n\
@@ -51,12 +52,12 @@ if [ -z ${REXEC} ]; then \n\
   echo "R not found, please ensure R is available and try again." \n\
   exit 1 \n\
 fi \n\
-echo "install.packages(\"${pkg}\", repos=\"https://cran.rstudio.com\")" | R --no-save \n\
+echo "install.packages(\"${pkg}\", repos=\"https://cran.rstudio.com\", download.file.method=\"libcurl\")" | R --no-save \n\
 ' \
 >> /usr/local/bin/rpkginstall \
 && chmod +x /usr/local/bin/rpkginstall
 
-ADD R/GCAT_6.3.1.tar.gz /tmp/R/
+COPY R/GCAT_6.3.1.tar.gz /tmp/R/
 
 RUN rpkginstall pheatmap \
  && rpkginstall gplots \
@@ -79,8 +80,9 @@ RUN rpkginstall pheatmap \
 
 ### phantomjs 2.1.1
 
-RUN curl -sSL https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | \
-      tar -xjv --strip-components 1 -C /tmp/phantomjs/ \
+RUN mkdir -p /tmp/phantomjs \
+ && curl -sSL https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
+  | tar -xjv --strip-components 1 -C /tmp/phantomjs/ \
  && mv /tmp/phantomjs/bin/phantomjs /usr/local/bin/phantomjs \
  && \rm -rf /tmp/phantomjs/
 
