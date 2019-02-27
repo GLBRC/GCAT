@@ -1,8 +1,8 @@
-####
+############################################
 #
-# GCAT
+# GCAT (Growth Curve Analysis Tool)
 #
-####
+############################################
 
 FROM centos:7
 
@@ -30,14 +30,11 @@ RUN cd /tmp/ \
 
 ### R
 
+# yum install again, which must occur after epel-release
 RUN yum install -y \
       R \
  && yum clean all -y \
  && rm -rf /var/cache/yum
-
-#RUN cd /tmp/ \
-# && mkdir -p /etc/R/ \
-# && echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site
 
 RUN echo -e '#!/usr/bin/env bash \n\
 # https://blog.sellorm.com/2017/10/21/quick-script-to-install-an-r-package-from-the-command-line/ \n\
