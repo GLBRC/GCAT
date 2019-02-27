@@ -20,8 +20,8 @@ RUN yum install -y \
 ### enca v1.19
 
 RUN cd /tmp/ \
- && git clone --single-branch --branch 1.19 https://github.com/nijel/enca.git prereqs/enca \
- && cd prereqs/enca \
+ && git clone --single-branch --branch 1.19 https://github.com/nijel/enca.git enca \
+ && cd enca \
  && ./configure \
  && make \
  && make check \
