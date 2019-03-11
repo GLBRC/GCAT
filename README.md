@@ -1,6 +1,6 @@
 # GCAT -- Growth Curve Analysis Tool
 
-forked from https://github.com/ybukhman/GCAT
+forked from https://github.com/ybukhman/GCAT, https://gitlab.wei.wisc.edu/compbio/GCAT
 
 ## What's in this package?
 
