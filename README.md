@@ -1,4 +1,6 @@
-# GCAT
+# GCAT -- Growth Curve Analysis Tool
+
+forked from https://github.com/ybukhman/GCAT
 
 ## What's in this package?
 
