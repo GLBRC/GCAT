@@ -1,18 +1,13 @@
-# GCAT -- Active Branches
+# GCAT
 
-[![build status](https://gitlab.wei.wisc.edu/compbio/GCAT/badges/master/build.svg)](https://gitlab.wei.wisc.edu/compbio/GCAT/commits/master) -- master
-
-[![build status](https://gitlab.wei.wisc.edu/compbio/GCAT/badges/GCAT_6.2/build.svg)](https://gitlab.wei.wisc.edu/compbio/GCAT/commits/GCAT_6.2) -- GCAT_6.2
-
-
-# What's in this package?
+## What's in this package?
 
 - `./` -- ruby code for the GCAT webapp
 - `./GCAT_info/R` -- R code 
   - `./GCAT_info/R/GCAT` -- contains the GCAT R package
 - `./GCAT_info/Testing` -- testing code, data and documents, outside of any regression tests that may be incorporated directly into R packages or Rails applications 
 
-# Getting started -- WEI
+## Getting started -- WEI
 
 - GCAT has been updated (e.g. changes  to database.yml, Gemfile) to run in WEI's web hosting environment
   - still runs on Ruby 1.9.3 due to code incompatability with newer versions
@@ -27,7 +22,7 @@
      - configure the correct passenger_ruby version
 - GCAT is now more easily maintainable, testable, and deployable, allowing simpler sysadmin maintenance (e.g. OS updates) and assistance (e.g. hosting help)
 
-# Getting started -- other hosting
+## Getting started -- other hosting
 
 - If all you want is the R package, you can install it from file GCAT_info/R/GCAT_N.N.N.tar.gz using R CMD INSTALL. You can also install it in RStudio, using menu Tools ==> Install Packages ==> Package Archive File.
 
