@@ -26,7 +26,8 @@ group :development do
 end
 
 group :production, :ci do
-  gem 'mysql2'
+  gem 'passenger'
+  gem 'mysql2', '0.4.10'
 end
 
 group :development, :test do
