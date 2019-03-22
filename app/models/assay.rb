@@ -436,7 +436,7 @@ class Assay
   end
 
   def zip_files(files)
-    if self.plate_type == 'multiple'
+    if self.plate_type == 'm'
       @zipfile = @generated_files_directory.join("multiplePlateAnalysis.zip").to_s
     else
       @zipfile = @generated_files_directory.join("singlePlateAnalysis.zip").to_s
